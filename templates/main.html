@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<link rel="stylesheet"
+		href="{% static 'styles/styles.css' %}">
+	<title>Instagram Clone</title>
+</head>
+<body>
+
+<!-- Our Header section Starts from here -->
+	{% include "navbar.html" %}
+
+	<!-- Code for Showing the Status -->
+	<main>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+			<div class="col-3">
+				<div class="card">
+					<h4>Suggestions For You</h4>
+					{% for user in users %}
+					{% if user != request.user%}
+					<div class="top">
+						<div class="userDetails">
+
+							<div class="profilepic">
+								<a href="{% url 'profile' user.id %}">
+								<div class="profile_img">
+									<div class="image">
+										<img src=
+													 {{user.avatar.url}}
+											alt="img12">
+									</div>
+								</div>
+									</a>
+							</div>
+							<h3>{{user.name}}<br>
+							<span>Follows You</span>
+							</h3>
+
+						</div>
+
+						<div>
+							<a href="#"
+							class="follow">follow
+							</a>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+
+
+
+			<!-- Our Footer Section will start from Here -->
+				<div class="footer">
+					<a class="footer-section" href="#">About</a>
+					<a class="footer-section" href="#">Help</a>
+					<a class="footer-section" href="#">API</a>
+					<a class="footer-section" href="#">Jobs</a>
+					<a class="footer-section" href="#">Privacy</a>
+					<a class="footer-section" href="#">Terms</a>
+					<a class="footer-section" href="#">Locations</a>
+					<br>
+					<a class="footer-section" href="#">Top Accounts</a>
+					<a class="footer-section" href="#">Hashtag</a>
+					<a class="footer-section" href="#">Language</a>
+					<br><br>
+					<span class="footer-section">
+						© 2023 INSTAGRAM FROM FACEBOOK
+					</span>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

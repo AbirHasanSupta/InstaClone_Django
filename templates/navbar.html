@@ -1,0 +1,67 @@
+
+<header>
+		<nav class="navbar">
+			<div class="container">
+				<div class="logo">
+					<a href="{% url 'home'%}">
+					<img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20220609090809/download-200x200.png"
+						alt="img1" height="30px">
+					</a>
+				</div>
+
+
+				<div class="nav-links">
+					<ul class="nav-group">
+						<li class="nav-item">
+							<a href="{% url 'user_search' %}">
+								<i class="far fa-heart">Search</i>
+							</a>
+						</li>
+
+						{% if not request.user.is_authenticated %}
+
+						<li class="nav-item">
+							<a href="{% url 'login' %}">
+								<i class="far fa-heart">Login</i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{% url 'register' %}">
+								<i class="far fa-heart">Register</i>
+							</a>
+						</li>
+						{% else %}
+						<li class="nav-item">
+							<a href="{% url 'inbox' %}">
+								<i class="fas fa-home">Messages</i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{% url 'create_post' %}">
+								<i class="fab fa-facebook-messenger">Create Post</i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div class="action">
+								<div class="profile"
+									onclick="menuToggle()">
+
+									<a href="{%url 'profile' request.user.id %}"><img src= {{request.user.avatar.url}}
+
+										alt="user Avatar"></a>
+
+								</div>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="{% url 'logout' %}">
+								<i class="far fa-compass">Logout</i>
+							</a>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
